@@ -12,15 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System;
 using System.Net.Http;
 using Newtonsoft.Json;
 
 namespace CryptoApp
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -28,16 +24,15 @@ namespace CryptoApp
             InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
-            var client = new HttpClient();
-            var response = await client.GetAsync(url);
-            var responseContent = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<dynamic>(responseContent);
-            var price = data.bitcoin.usd;
-
-            PriceTextBlock.Text = $"1 BTC = {price}$";
-        }
+        //private async void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
+        //    var client = new HttpClient();
+        //    var response = await client.GetAsync(url);
+        //    var responseContent = await response.Content.ReadAsStringAsync();
+        //    var data = JsonConvert.DeserializeObject<dynamic>(responseContent);
+        //    var price = data.bitcoin.usd;
+        //    PriceTextBlock.Text = $"1 BTC = {price}$";
+        //}
     }
 }

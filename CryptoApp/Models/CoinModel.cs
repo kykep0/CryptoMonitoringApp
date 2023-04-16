@@ -10,7 +10,7 @@ namespace CryptoApp.Models
     {
         public string Name { get; set; }
         public string Symbol { get; set; }
-        public double CurrentPrice { get; set; }
-        public double MarketCap { get; set; }
+        public decimal CurrentPrice { get; set; }
+        public decimal MarketCap { get; set; }
     }
 }

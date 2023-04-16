@@ -10,9 +10,23 @@
     <Window.DataContext>
         <local:CoinViewModel />
     </Window.DataContext>
+    <!--
     <StackPanel>
         <TextBlock Text="Ціна Bitcoin:"/>
         <TextBlock x:Name="PriceTextBlock" Text=""/>
         <Button Content="Отримати ціну" Click="Button_Click"/>
     </StackPanel>
+    -->
+    <Grid>
+        <ListView ItemsSource="{Binding CoinList}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Symbol" DisplayMemberBinding="{Binding Symbol}"/>
+                    <GridViewColumn Header="Current Price" DisplayMemberBinding="{Binding CurrentPrice, StringFormat='{}{0:C}'}"/>
+                    <GridViewColumn Header="Market Cap" DisplayMemberBinding="{Binding MarketCap, StringFormat='{}{0:C}'}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
 </Window>
