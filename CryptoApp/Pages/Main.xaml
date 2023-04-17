@@ -58,8 +58,8 @@
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" />
                     <GridViewColumn DisplayMemberBinding="{Binding Symbol}" Header="Symbol" />
-                    <GridViewColumn DisplayMemberBinding="{Binding CurrentPrice, StringFormat='{}{0:C}'}" Header="Price" />
-                    <GridViewColumn DisplayMemberBinding="{Binding CurrentPrice, StringFormat='{}{0:C}'}" Header="Market capitulation" />
+                    <GridViewColumn DisplayMemberBinding="{Binding CurrentPriceUsd, StringFormat='{}{0:C}'}" Header="Price" />
+                    <GridViewColumn DisplayMemberBinding="{Binding MarketCap, StringFormat='{}{0:C}'}" Header="Market capitulation" />
                 </GridView>
             </ListView.View>
         </ListView>

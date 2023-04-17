@@ -82,7 +82,7 @@ namespace CryptoApp.ViewModels
                         {
                             Name = coin.Value<string>("name"),
                             Symbol = coin.Value<string>("symbol"),
-                            CurrentPrice = coin.Value<decimal>("current_price"),
+                            CurrentPriceUsd = coin.Value<decimal>("current_price"),
                             MarketCap = coin.Value<decimal>("market_cap")
                         }));
                     }
