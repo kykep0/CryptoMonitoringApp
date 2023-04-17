@@ -4,6 +4,17 @@
              xmlns:local="clr-namespace:CryptoApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <FontFamily x:Key="FontAwesome">/Fonts/FontAwesome.otf#Font Awesome 5 Free Solid</FontFamily>
+        <ResourceDictionary>
+            <FontFamily x:Key="FontAwesome">/Fonts/FontAwesome.otf#Font Awesome 6 Free Solid</FontFamily>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+        
     </Application.Resources>
 </Application>

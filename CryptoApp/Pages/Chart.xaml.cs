@@ -12,20 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Net.Http;
-using Newtonsoft.Json;
-using CryptoApp.Pages;
 
 namespace CryptoApp
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Interaction logic for CoinChart.xaml
+    /// </summary>
+    public partial class CoinChart : Page
     {
-        public MainWindow()
+        public CoinChart()
         {
             InitializeComponent();
-
-            Main mainPage = new Main();
-            this.MainFrame.NavigationService.Navigate(mainPage);
         }
     }
 }
