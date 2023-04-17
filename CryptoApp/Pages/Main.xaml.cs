@@ -1,4 +1,5 @@
 ﻿using CryptoApp.Models;
+using CryptoApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace CryptoApp.Pages
 {
-    /// <summary>
-    /// Interaction logic for Main.xaml
-    /// </summary>
     public partial class Main : Page
     {
         public Main()
@@ -28,13 +26,13 @@ namespace CryptoApp.Pages
 
         private void Coin_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            
             if (sender is ListViewItem item && item.DataContext is CoinModel selectedItem)
             {
                 Frame frame = (Frame)Window.GetWindow(this).FindName("MainFrame");
-                //DetailedInfo detailPage = new DetailedInfo(selectedItem.Name);
+                DetailedViewModel detailedViewModel = new DetailedViewModel(selectedItem.Id);
                 DetailedInfo detailPage = new DetailedInfo();
-                
+                detailPage.DataContext = detailedViewModel;
+
                 frame.Content = detailPage;
             }
         }

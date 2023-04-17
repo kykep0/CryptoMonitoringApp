@@ -13,10 +13,9 @@ using System.Threading.Tasks;
 
 namespace CryptoApp.ViewModels
 {
-    class MainViewModel : BaseViewModel, INotifyPropertyChanged
+    class MainViewModel : BaseViewModel
     {
         private ObservableCollection<CoinModel> coinList;
-        private CoinModel selectedCoin;
         private List<int> shownCurrencyNumbersList = new List<int>() { 5, 10, 25, 50, 100 };
         private int shownCurrencyNumber;
 
@@ -27,15 +26,6 @@ namespace CryptoApp.ViewModels
             {
                 coinList = value;
                 OnPropertyChanged(nameof(CoinList));
-            }
-        }
-        public CoinModel SelectedCoin
-        {
-            get { return selectedCoin; }
-            set
-            {
-                selectedCoin = value;
-                OnPropertyChanged(nameof(SelectedCoin));
             }
         }
         public List<int> ShownCurrencyNumbersList
@@ -80,6 +70,7 @@ namespace CryptoApp.ViewModels
                         var coins = JArray.Parse(json);
                         CoinList = new ObservableCollection<CoinModel>(coins.Select(coin => new CoinModel
                         {
+                            Id = coin.Value<string>("id"),
                             Name = coin.Value<string>("name"),
                             Symbol = coin.Value<string>("symbol"),
                             CurrentPriceUsd = coin.Value<decimal>("current_price"),
@@ -96,13 +87,6 @@ namespace CryptoApp.ViewModels
                     throw new Exception("API request failed.");
                 }
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

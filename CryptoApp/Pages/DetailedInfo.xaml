@@ -4,17 +4,90 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CryptoApp" 
+      xmlns:viewModels="clr-namespace:CryptoApp.ViewModels" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
-      Title="DetailedCoinInfo" Background="#f4eddd">
+      Title="DetailedCoinInfo" Background="{DynamicResource MaterialDesignPaper}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        
         <materialDesign:ColorZone Padding="16" Background="#e7d0a6">
             <DockPanel>
                 <ToggleButton VerticalAlignment="Center" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignSwitchSecondaryToggleButton}" />
                 <StackPanel materialDesign:RippleAssist.IsCentered="True" Orientation="Horizontal"/>
             </DockPanel>
         </materialDesign:ColorZone>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Margin="0 16 0 8">
+            <Image Source="{Binding SelectedCoin.Image}" Height="80" Width="80" Margin="0 0 16 0" />
+            <StackPanel>
+                <TextBlock Text="Name:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                <TextBlock Text="{Binding SelectedCoin.Name}" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 24 0 0" Grid.ColumnSpan="3" />
+                <TextBlock Text="Symbol:" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                <TextBlock Text="{Binding SelectedCoin.Symbol}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                <TextBlock Text="Current Price:" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" />
+                <TextBlock Text="{Binding SelectedCoin.CurrentPriceUsd, StringFormat='{}{0:C}'}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+            </StackPanel>
+        </StackPanel>
+
+        <ComboBox x:Name="CurrencyComboBox" ItemsSource="{Binding Currencies}" SelectedItem="{Binding SelectedCurrency}" Grid.Row="2" Grid.Column="0" Margin="0 8 0 16" />
+
+        <Grid Grid.Row="3" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Market Cap Rank" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" />
+            <TextBlock Text="{Binding SelectedCoin.MarketRank}" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" Grid.Column="1" />
+            <TextBlock Text="All-Time High" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" Grid.Column="2" />
+            <TextBlock Text="{Binding SelectedCoin.CurrentPriceHigh, StringFormat='{}{0:C}'}" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" Grid.Column="3" />
+        </Grid>
+        <Grid Grid.Row="4" Grid.Column="0" Margin="0 16 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Price Change (24h)" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" />
+            <TextBlock Text="{Binding SelectedCoin.PriceChangePercentage24h, StringFormat='{}{0:P}'}" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" Grid.Column="1" />
+            <TextBlock Text="Price Change (7d)" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" Grid.Column="2" />
+            <TextBlock Text="{Binding SelectedCoin.PriceChangePercentage7d, StringFormat='{}{0:P}'}" Style="{StaticResource MaterialDesignBody1TextBlock}" Margin="0 8 0 0" Grid.Column="3" />
+        </Grid>
+
+        <ListBox ItemsSource="{Binding SelectedCoin.HistoricalPrices}" Grid.Row="5" Grid.ColumnSpan="3" Margin="16" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Date}" Style="{StaticResource MaterialDesignBody1TextBlock}" />
+                        <TextBlock Text="{Binding PriceUsd, StringFormat='{}{0:C}'}" Style="{StaticResource MaterialDesignBody1TextBlock}" Grid.Column="1" />
+                        <TextBlock Text="{Binding PriceBtc, StringFormat='{}{0:F8}'}" Style="{StaticResource MaterialDesignBody1TextBlock}" Grid.Column="2" />
+                        <TextBlock Text="{Binding VolumeUsd, StringFormat='{}{0:C}'}" Style="{StaticResource MaterialDesignBody1TextBlock}" Grid.Column="3" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
+
 </Page>

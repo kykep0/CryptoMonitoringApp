@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CryptoApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace CryptoApp
 {
-    /// <summary>
-    /// Interaction logic for DetailedCoinInfo.xaml
-    /// </summary>
     public partial class DetailedInfo : Page
     {
         public DetailedInfo()
